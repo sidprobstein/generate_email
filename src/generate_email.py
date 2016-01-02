@@ -160,7 +160,7 @@ def caption (origin):
 def main(argv):
        
     parser = argparse.ArgumentParser(description='Generate email using Enro .eml files')
-    parser.add_argument('-o', '--outputdir', default="output/", help="subdirectory into which to place enriched files")
+    parser.add_argument('-o', '--outputdir', default="messages2/", help="subdirectory into which to place enriched files")
     parser.add_argument('-d', '--debug', action="store_true", help="dump diagnostic information for debugging purposes")
     args = parser.parse_args()
                
@@ -178,8 +178,8 @@ def main(argv):
     nGenerated = 0
     nRead = 0
     nSent = 0
-    sReadDir = 'inbox/'
-    sSentDir = 'sent/'
+    sReadDir = 'enron/inbox/'
+    sSentDir = 'enron/sent/'
 
     # to do: scan sReadDir and sSentDir and build a list of files
     
@@ -234,6 +234,9 @@ def main(argv):
             jNew = {}
             jNew['user'] = "sid"
             jNew['subject'] = jEml['subject']
+            jNew['subject'] = jNew['subject'].replace('\n', ' ')
+            jNew['subject'] = jNew['subject'].replace('\r', ' ')
+            jNew['subject'] = jNew['subject'].replace('\t', ' ')
             if nRead > nReadToday:
                 # sent
                 jNew['from'] = 'sid@rightwhen.com'
@@ -242,15 +245,19 @@ def main(argv):
                 # read
                 jNew['from'] = jEml['from']
                 # cleanse from
-                jNew['from'] = jNew['from'].replace('\n', '')
-                jNew['from'] = jNew['from'].replace('\r', '')
+                jNew['from'] = jNew['from'].replace('\n', ' ')
+                jNew['from'] = jNew['from'].replace('\r', ' ')
+                jNew['from'] = jNew['from'].replace('\t', ' ')
                 jNew['body'] = jEml['text']
             # cleanse body
             jNew['body'] = jNew['body'].replace('\n', ' ')
             jNew['body'] = jNew['body'].replace('\r', ' ')
+            jNew['body'] = jNew['body'].replace('\t', ' ')
             
             # remove extra spaces
             jNew['body'] =  " ".join(jNew['body'].split())
+            jNew['subject'] =  " ".join(jNew['subject'].split())
+            jNew['from'] =  " ".join(jNew['from'].split())
                         
             # construct date/time
             # e.g. 2016-01-25T09:03:00

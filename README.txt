@@ -4,16 +4,15 @@ generate_email
 
 Python script to repurpose eml files into specific date ranges for indexing
 
+
 Usage
 -----
-
 python generate_email.py
 	
 
 Arguments
 ---------
-
-This 0.1 version is entirely hardcoded. Please review the script for details.
+This 0.1 version is hardcoded. Please review the script for details.
 
 Briefly: 
 
