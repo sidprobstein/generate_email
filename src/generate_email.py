@@ -159,7 +159,7 @@ def caption (origin):
 
 def main(argv):
        
-    parser = argparse.ArgumentParser(description='Generate email using Enro .eml files')
+    parser = argparse.ArgumentParser(description='Generate email in specific date ranges, using input .eml files')
     parser.add_argument('-o', '--outputdir', default="messages2/", help="subdirectory into which to place enriched files")
     parser.add_argument('-d', '--debug', action="store_true", help="dump diagnostic information for debugging purposes")
     args = parser.parse_args()
