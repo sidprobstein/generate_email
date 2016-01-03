@@ -163,9 +163,7 @@ def main(argv):
     parser.add_argument('-o', '--outputdir', default="messages2/", help="subdirectory into which to place enriched files")
     parser.add_argument('-d', '--debug', action="store_true", help="dump diagnostic information for debugging purposes")
     args = parser.parse_args()
-               
-    print "generate_email.py: starting up..."
-    
+                   
     # initialize
     nDays = 20
     nStartDay = 10      # 10th through 30th
@@ -297,8 +295,7 @@ def main(argv):
     # end for
         
     print "generate_email.py: generated", nGenerated, "messages for", nDays, "days"
-    print "generate_email.py: done"
-    
+
 # end main
 
 #############################################    
